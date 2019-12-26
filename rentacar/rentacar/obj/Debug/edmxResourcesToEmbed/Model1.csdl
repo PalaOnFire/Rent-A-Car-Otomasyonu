@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OtomasyonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="araclar">
+    <Key>
+      <PropertyRef Name="aracId" />
+    </Key>
+    <Property Name="aracId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="marka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="seri" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="mYılı" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="km" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="yakıt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="vites" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="kasatipi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="klima" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="plaka" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Resim" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="satis" Relationship="Self.fk_aracId" FromRole="araclar" ToRole="satis" />
+    <Property Name="aracfiyat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="kullanici">
+    <Key>
+      <PropertyRef Name="kullaniciId" />
+    </Key>
+    <Property Name="kullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rolId" Type="Int32" />
+    <NavigationProperty Name="roller" Relationship="Self.fk_rolId" FromRole="kullanici" ToRole="roller" />
+    <Property Name="rolAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="musteriler">
+    <Key>
+      <PropertyRef Name="musteriId" />
+    </Key>
+    <Property Name="musteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adı" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="soyadı" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="dTarihi" Type="DateTime" Precision="3" />
+    <Property Name="gsm" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dYeri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="resim" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="tcno" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="satis" Relationship="Self.fk_musteriID" FromRole="musteriler" ToRole="satis" />
+  </EntityType>
+  <EntityType Name="roller">
+    <Key>
+      <PropertyRef Name="rolId" />
+    </Key>
+    <Property Name="rolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rolAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="kullanicis" Relationship="Self.fk_rolId" FromRole="roller" ToRole="kullanici" />
+  </EntityType>
+  <EntityType Name="sati">
+    <Key>
+      <PropertyRef Name="satisId" />
+    </Key>
+    <Property Name="satisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteriId" Type="Int32" />
+    <Property Name="aracId" Type="Int32" />
+    <Property Name="tutar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="araclar" Relationship="Self.fk_aracId" FromRole="satis" ToRole="araclar" />
+    <NavigationProperty Name="musteriler" Relationship="Self.fk_musteriID" FromRole="satis" ToRole="musteriler" />
+  </EntityType>
+  <Association Name="fk_aracId">
+    <End Role="araclar" Type="Self.araclar" Multiplicity="0..1" />
+    <End Role="satis" Type="Self.sati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="araclar">
+        <PropertyRef Name="aracId" />
+      </Principal>
+      <Dependent Role="satis">
+        <PropertyRef Name="aracId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_rolId">
+    <End Role="roller" Type="Self.roller" Multiplicity="0..1" />
+    <End Role="kullanici" Type="Self.kullanici" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roller">
+        <PropertyRef Name="rolId" />
+      </Principal>
+      <Dependent Role="kullanici">
+        <PropertyRef Name="rolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_musteriID">
+    <End Role="musteriler" Type="Self.musteriler" Multiplicity="0..1" />
+    <End Role="satis" Type="Self.sati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="musteriler">
+        <PropertyRef Name="musteriId" />
+      </Principal>
+      <Dependent Role="satis">
+        <PropertyRef Name="musteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OtomasyonEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="araclars" EntityType="Self.araclar" />
+    <EntitySet Name="kullanicis" EntityType="Self.kullanici" />
+    <EntitySet Name="musterilers" EntityType="Self.musteriler" />
+    <EntitySet Name="rollers" EntityType="Self.roller" />
+    <EntitySet Name="satis" EntityType="Self.sati" />
+    <AssociationSet Name="fk_aracId" Association="Self.fk_aracId">
+      <End Role="araclar" EntitySet="araclars" />
+      <End Role="satis" EntitySet="satis" />
+    </AssociationSet>
+    <AssociationSet Name="fk_rolId" Association="Self.fk_rolId">
+      <End Role="roller" EntitySet="rollers" />
+      <End Role="kullanici" EntitySet="kullanicis" />
+    </AssociationSet>
+    <AssociationSet Name="fk_musteriID" Association="Self.fk_musteriID">
+      <End Role="musteriler" EntitySet="musterilers" />
+      <End Role="satis" EntitySet="satis" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

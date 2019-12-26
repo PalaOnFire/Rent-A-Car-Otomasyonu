@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OtomasyonModelStoreContainer" CdmEntityContainer="OtomasyonEntities">
+    <EntitySetMapping Name="araclars">
+      <EntityTypeMapping TypeName="OtomasyonModel.araclar">
+        <MappingFragment StoreEntitySet="araclar">
+          <ScalarProperty Name="aracfiyat" ColumnName="aracfiyat" />
+          <ScalarProperty Name="aracId" ColumnName="aracId" />
+          <ScalarProperty Name="marka" ColumnName="marka" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="seri" ColumnName="seri" />
+          <ScalarProperty Name="mYılı" ColumnName="mYılı" />
+          <ScalarProperty Name="km" ColumnName="km" />
+          <ScalarProperty Name="yakıt" ColumnName="yakıt" />
+          <ScalarProperty Name="vites" ColumnName="vites" />
+          <ScalarProperty Name="kasatipi" ColumnName="kasatipi" />
+          <ScalarProperty Name="klima" ColumnName="klima" />
+          <ScalarProperty Name="plaka" ColumnName="plaka" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanicis">
+      <EntityTypeMapping TypeName="OtomasyonModel.kullanici">
+        <MappingFragment StoreEntitySet="kullanici">
+          <ScalarProperty Name="rolAd" ColumnName="rolAd" />
+          <ScalarProperty Name="kullaniciId" ColumnName="kullaniciId" />
+          <ScalarProperty Name="kullaniciAd" ColumnName="kullaniciAd" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="musterilers">
+      <EntityTypeMapping TypeName="OtomasyonModel.musteriler">
+        <MappingFragment StoreEntitySet="musteriler">
+          <ScalarProperty Name="musteriId" ColumnName="musteriId" />
+          <ScalarProperty Name="adı" ColumnName="adı" />
+          <ScalarProperty Name="soyadı" ColumnName="soyadı" />
+          <ScalarProperty Name="dTarihi" ColumnName="dTarihi" />
+          <ScalarProperty Name="gsm" ColumnName="gsm" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="dYeri" ColumnName="dYeri" />
+          <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+          <ScalarProperty Name="resim" ColumnName="resim" />
+          <ScalarProperty Name="tcno" ColumnName="tcno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rollers">
+      <EntityTypeMapping TypeName="OtomasyonModel.roller">
+        <MappingFragment StoreEntitySet="roller">
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+          <ScalarProperty Name="rolAd" ColumnName="rolAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="satis">
+      <EntityTypeMapping TypeName="OtomasyonModel.sati">
+        <MappingFragment StoreEntitySet="satis">
+          <ScalarProperty Name="satisId" ColumnName="satisId" />
+          <ScalarProperty Name="musteriId" ColumnName="musteriId" />
+          <ScalarProperty Name="aracId" ColumnName="aracId" />
+          <ScalarProperty Name="tutar" ColumnName="tutar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
